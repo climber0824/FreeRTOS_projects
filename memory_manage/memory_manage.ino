@@ -72,11 +72,42 @@ void printMessage(void *parameter) {
 }
 
 void setup() {
-  // put your setup code here, to run once:
+  Serial.begin(115200);
 
+  // Wait a moment to start
+  vTaskDelay(1000 / portTICK_PERIOD_MS);
+  Serial.println();
+  Serial.println("--FreeRTOS Heap Demo--");
+  Serial.println("Enter a string");
+
+  // Start Serial receive task
+  xTaskCreatePinnedToCore(
+    readSerial,
+    "Read Serial",
+    1024,
+    NULL,
+    1,
+    NULL,
+    app_cpu
+  );
+
+  // Start Serial print task
+  xTaskCreatePinnedToCore(
+    printMessage,
+    "Print Message",
+    1024,
+    NULL,
+    1,
+    NULL,
+    app_cpu
+  );
+
+  // Delete "setup and loop" task
+  vTaskDelete(NULL);
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
 
 }
+
+
