@@ -1,19 +1,3 @@
-/**
- * FreeRTOS Counting Semaphore Challenge
- * 
- * Challenge: use a mutex and counting semaphores to protect the shared buffer 
- * so that each number (0 throguh 4) is printed exactly 3 times to the Serial 
- * monitor (in any order). Do not use queues to do this!
- * 
- * Hint: you will need 2 counting semaphores in addition to the mutex, one for 
- * remembering number of filled slots in the buffer and another for 
- * remembering the number of empty slots in the buffer.
- * 
- * Date: January 24, 2021
- * Author: Shawn Hymel
- * License: 0BSD
- */
-
 // You'll likely need this on vanilla FreeRTOS
 //#include semphr.h
 
