@@ -1,4 +1,4 @@
-#include CONFIG_FREERTOS_UNICORE
+#if CONFIG_FREERTOS_UNICORE
   static const BaseType_t app_cpu = 0;
 #else
   static const BaseType_t app_cpu = 1;
@@ -11,8 +11,8 @@ enum {TASK_STACK_SIZE = 2048};  // bytes in ESP32
 // Globals
 static SemaphoreHandle_t bin_sem;   // wait for parameters to be read
 static SemaphoreHandle_t done_sem;  // notifies main task when done
-static SemaphoreHandle_t chopstick[NUM_TASKS];
-static SemaphoreHandle_t arbitrator // Controls who eats at when
+static SemaphoreHandle_t chopstick[NUM_TASKS];       
+static SemaphoreHandle_t arbitrator; // Controls who eats at when
 
 // Task
 void eat(void *parameters) {
